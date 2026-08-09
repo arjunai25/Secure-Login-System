@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <span class="badge">
+                Protected Area
+            </span>
+
+            <h1>
+                Welcome, {{ user["username"] }} 👋
+            </h1>
+
+            <p>
+                You have successfully authenticated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="info-card">
+
+            <span>
+                Username
+            </span>
+
+            <strong>
+                {{ user["username"] }}
+            </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span>
+                Email
+            </span>
+
+            <strong>
+                {{ user["email"] }}
+            </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span>
+                Account Created
+            </span>
+
+            <strong>
+                {{ user["created_at"] }}
+            </strong>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span>
+                Two-Factor Authentication
+            </span>
+
+            {% if user["two_factor_enabled"] %}
+
+                <strong class="secure">
+                    ✓ Enabled
+                </strong>
+
+            {% else %}
+
+                <strong class="warning-text">
+                    Not Enabled
+                </strong>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    {% if not user["two_factor_enabled"] %}
+
+        <div class="security-warning">
+
+            <h2>
+                Improve Your Account Security
+            </h2>
+
+            <p>
+                Enable two-factor authentication to add
+                another layer of protection to your account.
+            </p>
+
+            <a
+                href="{{ url_for('setup_2fa') }}"
+                class="btn primary"
+            >
+                Enable 2FA
+            </a>
+
+        </div>
+
+    {% endif %}
+
+
+    <div class="security-info">
+
+        <h2>
+            Security Controls
+        </h2>
+
+        <ul>
+
+            <li>
+                Passwords are securely hashed.
+            </li>
+
+            <li>
+                SQL queries use parameterized statements.
+            </li>
+
+            <li>
+                CSRF tokens protect form submissions.
+            </li>
+
+            <li>
+                Login attempts are rate limited.
+            </li>
+
+            <li>
+                Sessions use secure cookie settings.
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+{% endblock %}

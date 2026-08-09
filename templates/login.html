@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        {% if two_factor %}
+
+            <h1>
+                🔐 Two-Factor Authentication
+            </h1>
+
+            <p class="subtitle">
+                Enter the 6-digit code from your authenticator app.
+            </p>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('verify_2fa') }}"
+            >
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                >
+
+
+                <label for="code">
+                    Authentication Code
+                </label>
+
+                <input
+                    id="code"
+                    name="code"
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]{6}"
+                    maxlength="6"
+                    autocomplete="one-time-code"
+                    required
+                    placeholder="123456"
+                >
+
+
+                <button
+                    class="btn primary full"
+                    type="submit"
+                >
+                    Verify Code
+                </button>
+
+            </form>
+
+        {% else %}
+
+            <h1>
+                Welcome Back
+            </h1>
+
+            <p class="subtitle">
+                Login to access your account.
+            </p>
+
+
+            <form
+                method="POST"
+                action="{{ url_for('login') }}"
+            >
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                >
+
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    required
+                    autocomplete="username"
+                    placeholder="Your username"
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="Your password"
+                >
+
+
+                <button
+                    class="btn primary full"
+                    type="submit"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <p class="form-footer">
+
+                Don't have an account?
+
+                <a href="{{ url_for('register') }}">
+                    Register
+                </a>
+
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

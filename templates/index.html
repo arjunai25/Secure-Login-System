@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}
+Secure Login System
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div>
+
+        <span class="badge">
+            🔒 Cyber Security Project
+        </span>
+
+        <h1>
+            Secure Login System
+        </h1>
+
+        <p>
+            A secure authentication system using password hashing,
+            session management, input validation and optional
+            two-factor authentication.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="{{ url_for('register') }}"
+                class="btn primary"
+            >
+                Create Account
+            </a>
+
+            <a
+                href="{{ url_for('login') }}"
+                class="btn secondary"
+            >
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🔑
+        </div>
+
+        <h3>
+            Password Hashing
+        </h3>
+
+        <p>
+            Passwords are never stored as plaintext.
+            They are securely hashed before being stored.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🛡️
+        </div>
+
+        <h3>
+            SQL Injection Protection
+        </h3>
+
+        <p>
+            Database operations use parameterized queries
+            instead of directly constructing SQL statements.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📱
+        </div>
+
+        <h3>
+            Two-Factor Authentication
+        </h3>
+
+        <p>
+            Optional TOTP-based 2FA provides an additional
+            authentication factor.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            ⏱️
+        </div>
+
+        <h3>
+            Session Security
+        </h3>
+
+        <p>
+            Sessions use HTTPOnly cookies and automatically
+            expire after a period of inactivity.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

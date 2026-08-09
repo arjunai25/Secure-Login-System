@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+
+.venv/
+venv/
+env/
+
+users.db
+
+temp_2fa.png
+
+.env
+
+.DS_Store
